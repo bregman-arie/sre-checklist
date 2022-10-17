@@ -1,6 +1,19 @@
 # SRE Checklist
 
-## Repositories
+## SRE Team
+
+- [ ] Having a team meeting
+
+## SRE Lead 
+
+- [ ] Is there is an onboarding page for SREs joining the team?
+- [ ] Schedule 1:1 meeting with team (manager or lead?)
+- [ ] Learn how others are doing it!
+    - [ ] https://github.com/upgundecha/howtheysre - so many examples!
+
+## Technologies
+
+## Git Repositories
 
 - [ ] Is there CI for every project?
   - [ ] Linting and Styling
@@ -8,14 +21,6 @@
   - [ ] E2E testing
 - [ ] Infra is managed from code
   - [ ] IaC technology chosen and in use (Terraform, Ansible, Pulumi, etc.)
-
-## SRE basic checklist
-
-## SRE Lead checklist
-
-- [ ] Is there is an onboarding page for SREs joining the team?
-
-## Technologies
 
 ## Kubernetes 101
 
