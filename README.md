@@ -49,6 +49,7 @@ Clarification: these checklists are **opinionated**. They are based on my own op
 
 - [ ] Resources managed through IaC technologies such as Terrform, Pulumti, etc.
 - [ ] Resources are tagged, labeled
+  - [ ] Env (staging, prod, dev)
 - [ ] Resources Quotas are set
 
 ### Kubernetes
@@ -58,7 +59,7 @@ Clarification: these checklists are **opinionated**. They are based on my own op
 - [ ] CD process for manifests/configurations (using something like Flux, ArgoCD)
   - [ ] Make sure cluster bootstraping (the process of preparing the cluster) is managed fully using GitOps
 - [ ] Cluster for each environment? Dev, QA, Staging, Production
-- 
+  - [ ] Per region? Per cloud? How distributed your environment should be? 
 - [ ] Cluster Policy Management
   - [ ] Networking Policies
   - [ ] Storage Policies
