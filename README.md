@@ -8,15 +8,40 @@ Clarification: these checklists are **opinionated**. They are based on my own op
 
 ### SRE Team
 
-- [ ] Team responsibilities are clear for everyone
-  - [ ] Managing infra (one can argue whether it's SRE or DevOps, but it depends on what functions the org has)
+#### Responsibilities
+
+- [ ] Team responsibilities should be clear for everyone and documented
+  - The common one are:
+  - [ ] Managing infra
+    - One can argue whether it's SRE or DevOps, but it depends on what functions the org has
   - [ ] Monitoring
+  - [ ] App Performance (?)
+
+#### Skills
+
+- [ ] Coding!
+  - It doesn't matter what language! market right now leaning towards mostly Go, but Python is also quite common and eventually whatever works better for the team
+- [ ] Containers!
+  - One can argue it depends on product and other considerations but I'm 100% confident you should understand containers to some extent
+    - [ ] Kubernetes
+      - If you agree about containers, Kubernetes is the next step (or other platforms like Nomad, but basically containers orchestration)
+- [ ] Cloud (?)
+    - Not sure if 100% tbh. I believe this very much depends on your infra in the org
+
+#### Processes
+
+- [ ] Incident Management
+  - There must be a well defined process to how incidents are managed. Some thoughts:
+    - Where incidents are reported/raised?
+    - Who monitors the alerts at any given point of time?
+    - Do you need 100% time coverage?
+    - Is there any team that gets the alerts before the SRE team and tries to handle the issue?
 
 ### SRE Goals 
 
 - [ ] Set goals
   - [ ] Define SLO (Service Level Objective)
-  - 100% reliability is not a good goal (not sustainable + not feasible since perhaps you can drive 100% reliability for the service you own but most of the time not for its dependencies)
+  - 100% reliability is not a good goal (not sustainable + not feasible since you can drive 100% reliability for the service you own, but most of the time not for its dependencies)
 
 ### SRE Lead 
 
@@ -30,9 +55,9 @@ Clarification: these checklists are **opinionated**. They are based on my own op
   - [ ] Does development team waits on SRE for infra related operations?
   - [ ] Basically going over other check lists in this page :)
 - [ ] Identify SRE team maturity and work on improving it
-  - [ ] Operations: SRE is focused on resolving issues, dealing with request
-  - [ ] Automation: SRE is moving towards automation and self-service. Providing tooling, documentation, etc.
-  - [ ] Product: SRE is focused on improving the product itself - reliability, performances, etc.
+  - [ ] Step 1: Operations: SRE is focused on resolving issues, dealing with request
+  - [ ] Step 2: Automation: SRE is moving towards automation and self-service. Providing tooling, documentation, etc.
+  - [ ] Step 3: Product: SRE is focused on improving the product itself - reliability, performances, etc.
 
 ## Technologies
 
