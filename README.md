@@ -64,15 +64,21 @@ Clarification: these checklists are **opinionated**. They are based on my own op
   - [ ] Networking Policies
   - [ ] Storage Policies
 
-### GitOps (e.g. ArgoCD)
+### GitOps - ArgoCD
 
-- [ ] Infra code (Manifests, Configurations, etc.) is in a separate repository (and not in application repo)
-- [ ] GitOps adopted
+- [ ] GitOps adopted for applications deployments and rollouts
   - [ ] GitOps adopted also for GitOps agents themselves and not only for app related code
+    - [ ] DON'T install ArgoCD with kubectl commands
+    - [ ] Helm chart not recommended as it lags behind official releases of new ArgoCD releases
+    - [ ] Consider:
+      - [ ] Hosted Argo CD instance (pros: maintenance is on others. cons: make sure you have some money in the wallet)
+      - [ ] ArgoCD for managing ArgoCD (pros: easy DR, rollbacks, ... and full audit and changelog. cons: maintenance)
+        - [ ] Consider using [Argo CD Pilot](https://argocd-autopilot.readthedocs.io/en/stable) for that which is "opinionated way of installing Argo-CD and managing GitOps repositories"
+- [ ] Infra code (Manifests, Configurations, etc.) is in a separate repository (and not in application repository)
 - [ ] Sync Strategy
   - [ ] Auto Prune (resources deleted when files/content deleted)
   - [ ] Self-heal (cluster state corrected based on Git state and when manual changes done to the cluster)
-- [ ] How do you manage multiple clusters?
+- [ ] How do you manage ArgoCD for multiple clusters?
   - [ ] One ArgoCD to rule them all or ArgoCD on each cluster?
 
 ## Monitoring
