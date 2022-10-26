@@ -53,6 +53,7 @@ Note: these checklists are **opinionated**. To be clear: they are based on my op
 
 - [ ] Apply/Add labels for every type of resources. You may use this [page](https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels) as a suggestion to which labels you should be adding
 - [ ] CD process for manifests/configurations (using something like Flux, ArgoCD)
+  - [ ] Make sure cluster bootstraping (the process of preparing the cluster) is managed fully using GitOps
 
 ### GitOps (e.g. ArgoCD)
 
@@ -62,5 +63,13 @@ Note: these checklists are **opinionated**. To be clear: they are based on my op
 - [ ] Sync Strategy
   - [ ] Auto Prune (resources deleted when files/content deleted)
   - [ ] Self-heal (cluster state corrected based on Git state and when manual changes done to the cluster)
+- [ ] How do you manage multiple clusters?
+  - [ ] One ArgoCD to rule them all or ArgoCD on each cluster?
 
 ## Monitoring
+
+TODO
+
+## Chaos Engineering
+
+TODO
