@@ -1,6 +1,8 @@
 # SRE Checklist
 
-Note: these checklists are **opinionated**. To be clear: they are based on my opinion and experience and are not universal truth. So you should definitely doubt whatever you read here and more than welcome to add your own opinion on the matter
+Purpose: Provide teams and individuals an idea on what to aspire for or what to take into consideration in the SRE field and work
+
+Clarification: these checklists are **opinionated**. They are based on my own opinion and experience and are not universal truth. So you should definitely doubt whatever you read here and more than welcome to add your own opinion on the matter
 
 ## Team
 
@@ -52,8 +54,14 @@ Note: these checklists are **opinionated**. To be clear: they are based on my op
 ### Kubernetes
 
 - [ ] Apply/Add labels for every type of resources. You may use this [page](https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels) as a suggestion to which labels you should be adding
+- [ ] CI/CD for Cluster bootstraping 
 - [ ] CD process for manifests/configurations (using something like Flux, ArgoCD)
   - [ ] Make sure cluster bootstraping (the process of preparing the cluster) is managed fully using GitOps
+- [ ] Cluster for each environment? Dev, QA, Staging, Production
+- 
+- [ ] Cluster Policy Management
+  - [ ] Networking Policies
+  - [ ] Storage Policies
 
 ### GitOps (e.g. ArgoCD)
 
