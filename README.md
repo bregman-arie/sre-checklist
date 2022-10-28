@@ -76,6 +76,7 @@ Clarification: these checklists are **opinionated**. They are based on my own op
 - [ ] Resources are tagged, labeled
   - [ ] Env (staging, prod, dev)
 - [ ] Resources Quotas are set
+- [ ] No single point of failure
 
 ### Kubernetes
 
@@ -114,3 +115,12 @@ TODO
 ## Chaos Engineering
 
 TODO
+
+## IaC
+
+  - [ ] Follow DRY (Don't Repeat Yourself) principle as in make sure there are no code duplication so when you change parameter's value for example, you don't need to change it in two different place
+
+## Terraform
+
+  - [ ] Variables have description (to document what they are used for)
+  - [ ] Terraform repositories have CI pipelines to test changes to Terraform code
