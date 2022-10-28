@@ -2,7 +2,26 @@
 
 Purpose: Provide teams and individuals an idea on what to aspire for or what to take into consideration in the SRE field and work
 
-Clarification: these checklists are **opinionated**. They are based on my own opinion and experience and are not universal truth. So you should definitely doubt whatever you read here and more than welcome to add your own opinion on the matter
+Clarification: these checklists are **opinionated**. They are based on my own opinion and experience and are not universal truth (duh! :)).
+So you should definitely doubt whatever you read here and more than welcome to add your own opinion on the matter by starting a discussion or proposing a change to the project
+
+- [SRE Checklist](#sre-checklist)
+  - [Team](#team)
+    - [SRE Team](#sre-team)
+      - [Responsibilities](#responsibilities)
+      - [Skills](#skills)
+      - [Processes](#processes)
+    - [SRE Team Goals](#sre-team-goals)
+    - [SRE Lead](#sre-lead)
+  - [Technologies](#technologies)
+    - [Git Repositories](#git-repositories)
+    - [Cloud](#cloud)
+    - [Kubernetes](#kubernetes)
+    - [GitOps - ArgoCD](#gitops---argocd)
+    - [Monitoring](#monitoring)
+    - [Chaos Engineering](#chaos-engineering)
+    - [IaC](#iac)
+    - [Terraform](#terraform)
 
 ## Team
 
@@ -20,7 +39,7 @@ Clarification: these checklists are **opinionated**. They are based on my own op
 #### Skills
 
 - [ ] Must
-    - [ ] Coding!
+    - [ ] Coding
       - It doesn't matter what language! it seems market right now leaning towards Go mostly, for SRE and Devops, but Python is also quite common and eventually whatever works best for the team is what matters
 - [ ] Optional (depends on your environment, technology stack, etc.)
     - [ ] Containers
@@ -41,27 +60,28 @@ Clarification: these checklists are **opinionated**. They are based on my own op
     - [ ] Do you need to go to incidents platform/page or do you get an alert?
     - [ ] Do you schedule a meeting to talk about 
 
-### SRE Goals 
+### SRE Team Goals 
 
 - [ ] Set goals
   - [ ] Define SLO (Service Level Objective)
-  - 100% reliability is not a good goal (not sustainable + not feasible since you can drive 100% reliability for the service you own, but most of the time not for its dependencies)
+  - 100% reliability is not a good goal! (not sustainable + not feasible. One example: maybe you can drive 100% reliability for the service you own, but most of the time not for its dependencies)
 
 ### SRE Lead 
 
 - [ ] Is there an onboarding page for SREs joining the team?
 - [ ] Schedule 1:1 meeting with team (probably...manager or lead? TBD)
-- [ ] Learn how others are doing it!
-    - [ ] https://github.com/upgundecha/howtheysre - so many examples!
 - [ ] Identify Possible Gaps. Few things to watch our for:
-  - [ ] Does development team waits on SRE for infra related operations?
-  - [ ] Basically going over other check lists in this page :)
+  - Does development team waits on SRE for infra related operations?
+  - Basically going over other check lists in this page :)
 - [ ] Identify SRE team maturity and work on improving it
   - [ ] Step 1: Operations: SRE is focused on resolving issues, dealing with requests
     - At this step you'll be mainly focused on making sure you and the team are able to respond to any issue raised
     - Slowly you'll automated processes, fixes and move towards step 2
   - [ ] Step 2: Automation: SRE is moving towards automation and self-service. Providing tooling, documentation, etc.
   - [ ] Step 3: Product: SRE is focused on improving the product itself - reliability, performances, etc.
+- [ ] Keep learning ALL THE TIME
+  - [ ] Learn how others are doing it!
+    - https://github.com/upgundecha/howtheysre - so many good examples!
 
 ## Technologies
 
@@ -71,10 +91,8 @@ Clarification: these checklists are **opinionated**. They are based on my own op
   - [ ] Linting and Styling
   - [ ] Unit tests
   - [ ] E2E testing
-- [ ] Infra is managed from code
-  - [ ] IaC technology chosen and in use (Terraform, Ansible, Pulumi, etc.)
 - [ ] Least Privilge and Zero Trust
-  - [ ] Make sure only people from team/company have accesses
+  - [ ] Make sure only people from team/company have access to the repositories
 
 ### Cloud
 
@@ -121,13 +139,16 @@ TODO
 
 ### Chaos Engineering
 
-TODO
+The interesting topic of ensuring your environment can withstand unexpected disruptions
 
-## IaC
+TODO: insert a list of steps to go towards the process of establishing and integrating chaos engineering in your environment
+
+### IaC
 
   - [ ] Follow DRY (Don't Repeat Yourself) principle as in make sure there are no code duplication so when you change parameter's value for example, you don't need to change it in two different place
 
-## Terraform
+### Terraform
 
   - [ ] Variables have description (to document what they are used for)
   - [ ] Terraform repositories have CI pipelines to test changes to Terraform code
+    - [ ] Consider inserting cost considerations (e.g. test whether a change will raise the bill significantly)
