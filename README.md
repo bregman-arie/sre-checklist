@@ -19,14 +19,14 @@ Clarification: these checklists are **opinionated**. They are based on my own op
 
 #### Skills
 
-- [ ] Coding!
-  - It doesn't matter what language! market right now leaning towards mostly Go, but Python is also quite common and eventually whatever works better for the team
-- [ ] Containers!
-  - One can argue it depends on product and other considerations but I'm 100% confident you should understand containers to some extent
+- [ ] Must
+    - [ ] Coding!
+      - It doesn't matter what language! it seems market right now leaning towards Go mostly, for SRE and Devops, but Python is also quite common and eventually whatever works best for the team is what matters
+- [ ] Optional (depends on your environment, technology stack, etc.)
+    - [ ] Containers
     - [ ] Kubernetes
-      - If you agree about containers, Kubernetes is the next step (or other platforms like Nomad, but basically containers orchestration)
-- [ ] Cloud (?)
-    - Not sure if 100% tbh. I believe this very much depends on your infra in the org
+    - [ ] Cloud
+    - [ ] CI/CD
 
 #### Processes
 
@@ -36,6 +36,10 @@ Clarification: these checklists are **opinionated**. They are based on my own op
     - Who monitors the alerts at any given point of time?
     - Do you need 100% time coverage?
     - Is there any team that gets the alerts before the SRE team and tries to handle the issue?
+  - Is the process automated?
+    - [ ] Do you need to manually open a ticket?
+    - [ ] Do you need to go to incidents platform/page or do you get an alert?
+    - [ ] Do you schedule a meeting to talk about 
 
 ### SRE Goals 
 
@@ -49,13 +53,13 @@ Clarification: these checklists are **opinionated**. They are based on my own op
 - [ ] Schedule 1:1 meeting with team (probably...manager or lead? TBD)
 - [ ] Learn how others are doing it!
     - [ ] https://github.com/upgundecha/howtheysre - so many examples!
-    - [ ] Personal favorite examples
-      - [  ] [Enter the Abattoir](https://achievers.engineering/enter-the-abattoir-ee5e2019f0b3) - very cool idea of the SRE team to provide tooling around creation of "namespaces" - spaces with the all the components the dev team needs
 - [ ] Identify Possible Gaps. Few things to watch our for:
   - [ ] Does development team waits on SRE for infra related operations?
   - [ ] Basically going over other check lists in this page :)
 - [ ] Identify SRE team maturity and work on improving it
-  - [ ] Step 1: Operations: SRE is focused on resolving issues, dealing with request
+  - [ ] Step 1: Operations: SRE is focused on resolving issues, dealing with requests
+    - At this step you'll be mainly focused on making sure you and the team are able to respond to any issue raised
+    - Slowly you'll automated processes, fixes and move towards step 2
   - [ ] Step 2: Automation: SRE is moving towards automation and self-service. Providing tooling, documentation, etc.
   - [ ] Step 3: Product: SRE is focused on improving the product itself - reliability, performances, etc.
 
@@ -69,14 +73,17 @@ Clarification: these checklists are **opinionated**. They are based on my own op
   - [ ] E2E testing
 - [ ] Infra is managed from code
   - [ ] IaC technology chosen and in use (Terraform, Ansible, Pulumi, etc.)
+- [ ] Least Privilge and Zero Trust
+  - [ ] Make sure only people from team/company have accesses
 
 ### Cloud
 
 - [ ] Resources managed through IaC technologies such as Terrform, Pulumti, etc.
 - [ ] Resources are tagged, labeled
   - [ ] Env (staging, prod, dev)
-- [ ] Resources Quotas are set
+- [ ] Resources Quotas are set (no one wants to hit high bills)
 - [ ] No single point of failure
+  - [ ] Resources deployed across availability zones, regions, etc.
 
 ### Kubernetes
 
@@ -108,11 +115,11 @@ Clarification: these checklists are **opinionated**. They are based on my own op
   - [ ] Auto Prune (resources deleted when files/content deleted)
   - [ ] Self-heal (cluster state corrected based on Git state and when manual changes done to the cluster)
 
-## Monitoring
+### Monitoring
 
 TODO
 
-## Chaos Engineering
+### Chaos Engineering
 
 TODO
 
