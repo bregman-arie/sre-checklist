@@ -8,8 +8,8 @@ So you should definitely doubt whatever you read here and more than welcome to a
 - [SRE Checklist](#sre-checklist)
   - [Team](#team)
     - [SRE Team](#sre-team)
-      - [Responsibilities](#responsibilities)
       - [Skills](#skills)
+      - [Responsibilities](#responsibilities)
       - [Processes](#processes)
     - [SRE Team Goals](#sre-team-goals)
     - [SRE Lead](#sre-lead)
@@ -28,25 +28,29 @@ So you should definitely doubt whatever you read here and more than welcome to a
 
 ### SRE Team
 
-#### Responsibilities
-
-- [ ] Team responsibilities should be clear for everyone and documented
-  - The common one are:
-  - [ ] Managing infra
-    - One can argue whether it's SRE or DevOps, but it depends on what functions the org has
-  - [ ] Monitoring
-  - [ ] App Performance (?)
-
 #### Skills
 
-- [ ] Must
+- [ ] **Must**
     - [ ] Coding
       - It doesn't matter what language! it seems market right now leaning towards Go mostly, for SRE and Devops, but Python is also quite common and eventually whatever works best for the team is what matters
-- [ ] Optional (depends on your environment, technology stack, etc.)
+- [ ] **Optional** (depends on your environment, technology stack, etc.)
     - [ ] Containers
     - [ ] Kubernetes
     - [ ] Cloud
     - [ ] CI/CD
+
+#### Responsibilities
+
+- [ ] **Decide on responsibilities**
+  - Common
+    - [ ] Infrastructure management
+    - [ ] Monitoring
+    - [ ] Incident Management
+    - [ ] Infra and Reliability related automation
+  - [ ] Arguable
+    - [ ] App Performance - Arguable because some organizations treat it as dev responsibility
+- [ ] **Documented/Written**
+  - Make sure to write down the responsibilities of the team somewhere. That will be useful for many things like new members joining, recuriting, clarity for the organization and more
 
 #### Processes
 
@@ -86,15 +90,16 @@ So you should definitely doubt whatever you read here and more than welcome to a
 
 ### New SRE Team Member
 
-- [ ] Welcome :)
+- Welcome :)
+- Have a mentor? Great. If not, ask for one
 - [ ] Do the onboarding
-  - [ ] No onboarding? maybe you can be the first to add one
-- [ ] Drive for having a mentor
+    -  No onboarding? maybe you can be the first to add one
 - [ ] Learn about the product
   - What it does?
   - Is it SaaS? On-Premise? ...
   - How it's delivered and deployed?
-  - Is it monitored?
+- [ ] Time to deep dive into operations
+  - TODO: add some items :)
 
 ## Technologies
 
@@ -163,15 +168,17 @@ TODO: insert a list of steps to go towards the process of establishing and integ
 
 ### Terraform
 
-  - Terraform Code 
-    - Variables have description (to document what they are used for)
-  - CI/CD for Terraform changes
-    - [  ] CI to test Terraform changes (syntax, lint, ...)
+  - **Terraform Code**
+    - [ ] Variables have description (to document what they are used for)
+    - [ ] Set lifecycle "prevent_destroy" on resources that should never be deleted (e.g. Terraform state source like S3 bucket)
+  - **CI/CD**
+    - [ ] CI to test Terraform changes (syntax, lint, ...)
       - Consider inserting cost considerations (e.g. test whether a change will raise the bill significantly if you are using a public cloud)
     - [ ] CD to deploy apply Terraform changes
-  - State
-    - [ ] Probably needless to say but don't store your state publicly (it may include credentials and either way it's not recommended)
-    - [ ] Never edit directly/manually (as it should be managed and updated by Terraform itself as part of the Terraform lifecycle)
-    - [ ] Stored in a private secured place (e.g. aws s3 bucket) as it may contain sensitive data
+  - **State**
+    - [ ] Stored in a private secured location
+      - [ ] Encrypted
+      - [ ] Public access blocked
     - [ ] Stored in a shared location as it may be updated by different team members
-    - [ ] Backed up (e.g. by enabling versioning if it's an s3 bucket)
+    - [ ] Backed up (e.g. by having versioning)
+    - [ ] Never edited directly/manually (as it should be managed and updated by Terraform itself as part of the Terraform lifecycle)
