@@ -13,6 +13,7 @@ So you should definitely doubt whatever you read here and more than welcome to a
       - [Processes](#processes)
     - [SRE Team Goals](#sre-team-goals)
     - [SRE Lead](#sre-lead)
+    - [New SRE Team Member](#new-sre-team-member)
   - [Technologies](#technologies)
     - [Git Repositories](#git-repositories)
     - [Cloud](#cloud)
@@ -83,6 +84,18 @@ So you should definitely doubt whatever you read here and more than welcome to a
   - [ ] Learn how others are doing it!
     - https://github.com/upgundecha/howtheysre - so many good examples!
 
+### New SRE Team Member
+
+- [ ] Welcome :)
+- [ ] Do the onboarding
+  - [ ] No onboarding? maybe you can be the first to add one
+- [ ] Drive for having a mentor
+- [ ] Learn about the product
+  - What it does?
+  - Is it SaaS? On-Premise? ...
+  - How it's delivered and deployed?
+  - Is it monitored?
+
 ## Technologies
 
 ### Git Repositories
@@ -102,6 +115,7 @@ So you should definitely doubt whatever you read here and more than welcome to a
 - [ ] Resources Quotas are set (no one wants to hit high bills)
 - [ ] No single point of failure
   - [ ] Resources deployed across availability zones, regions, etc.
+- [ ] Environment for Dev/Staging and a separate one for production
 
 ### Kubernetes
 
@@ -149,6 +163,15 @@ TODO: insert a list of steps to go towards the process of establishing and integ
 
 ### Terraform
 
-  - [ ] Variables have description (to document what they are used for)
-  - [ ] Terraform repositories have CI pipelines to test changes to Terraform code
-    - [ ] Consider inserting cost considerations (e.g. test whether a change will raise the bill significantly)
+  - Terraform Code 
+    - Variables have description (to document what they are used for)
+  - CI/CD for Terraform changes
+    - [  ] CI to test Terraform changes (syntax, lint, ...)
+      - Consider inserting cost considerations (e.g. test whether a change will raise the bill significantly if you are using a public cloud)
+    - [ ] CD to deploy apply Terraform changes
+  - State
+    - [ ] Probably needless to say but don't store your state publicly (it may include credentials and either way it's not recommended)
+    - [ ] Never edit directly/manually (as it should be managed and updated by Terraform itself as part of the Terraform lifecycle)
+    - [ ] Stored in a private secured place (e.g. aws s3 bucket) as it may contain sensitive data
+    - [ ] Stored in a shared location as it may be updated by different team members
+    - [ ] Backed up (e.g. by enabling versioning if it's an s3 bucket)
