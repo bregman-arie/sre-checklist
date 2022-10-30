@@ -8,8 +8,8 @@ So you should definitely doubt whatever you read here and more than welcome to a
 - [SRE Checklist](#sre-checklist)
   - [Team](#team)
     - [SRE Team](#sre-team)
-      - [Skills](#skills)
       - [Responsibilities](#responsibilities)
+      - [Skills](#skills)
       - [Processes](#processes)
     - [SRE Team Goals](#sre-team-goals)
     - [SRE Lead](#sre-lead)
@@ -28,17 +28,6 @@ So you should definitely doubt whatever you read here and more than welcome to a
 
 ### SRE Team
 
-#### Skills
-
-- [ ] **Must**
-    - [ ] Coding
-      - It doesn't matter what language! it seems market right now leaning towards Go mostly, for SRE and Devops, but Python is also quite common and eventually whatever works best for the team is what matters
-- [ ] **Optional** (depends on your environment, technology stack, etc.)
-    - [ ] Containers
-    - [ ] Kubernetes
-    - [ ] Cloud
-    - [ ] CI/CD
-
 #### Responsibilities
 
 - [ ] **Decide on responsibilities**
@@ -50,7 +39,23 @@ So you should definitely doubt whatever you read here and more than welcome to a
   - [ ] Arguable
     - [ ] App Performance - Arguable because some organizations treat it as dev responsibility
 - [ ] **Documented/Written**
-  - Make sure to write down the responsibilities of the team somewhere. That will be useful for many things like new members joining, recuriting, clarity for the organization and more
+  - Make sure to write down the responsibilities of the team somewhere. That will be useful for many things like new members joining, recruiting, clarity for the organization and more.
+
+#### Skills
+
+- [ ] **Must**
+    - [ ] Coding
+      - It doesn't matter what language! it seems market right now leaning towards Go mostly, for SRE and Devops, but Python is also quite common and eventually whatever works best for the team is what matters
+    - [ ] Monitoring
+      - Reliability should be monitored, as such I'm not familiar of SRE who are clueless about monitoring
+    - [ ] CI/CD
+      - CI/CD today is integrated in every development process, whether it's of the application itself or the automation and infra managed by SRE and DevOps teams
+      - IaC, "high level" automation
+- [ ] **Optional** (depends on your environment, technology stack, etc.)
+    - [ ] Containers
+    - [ ] Kubernetes
+    - [ ] Cloud
+    - [ ] Virtualization
 
 #### Processes
 
@@ -83,7 +88,11 @@ So you should definitely doubt whatever you read here and more than welcome to a
     - At this step you'll be mainly focused on making sure you and the team are able to respond to any issue raised
     - Slowly you'll automated processes, fixes and move towards step 2
   - [ ] Step 2: Automation: SRE is moving towards automation and self-service. Providing tooling, documentation, etc.
+    - In this step you focus on building the mindset of automating fixes, documenting what the team and others parties in the organization should be aware of
+    - This step is probably the most long one. Don't expect to achieve it in short time, just make sure you have consistent progress towards next step
   - [ ] Step 3: Product: SRE is focused on improving the product itself - reliability, performances, etc.
+    - Congratulations. Processes are automated, you respond quickly to issue, .., you are living the dream. Now you can go deeper and focus on the product itself
+    - This not for everyone but definitely a feasible step and one to aspire for
 - [ ] Keep learning ALL THE TIME
   - [ ] Learn how others are doing it!
     - https://github.com/upgundecha/howtheysre - so many good examples!
@@ -109,7 +118,7 @@ So you should definitely doubt whatever you read here and more than welcome to a
   - [ ] Linting and Styling
   - [ ] Unit tests
   - [ ] E2E testing
-- [ ] Least Privilge and Zero Trust
+- [ ] Least Privilege and Zero Trust
   - [ ] Make sure only people from team/company have access to the repositories
 
 ### Cloud
@@ -136,9 +145,9 @@ So you should definitely doubt whatever you read here and more than welcome to a
 
 ### GitOps - ArgoCD
 
-- [ ] GitOps adopted for application deployments and rollouts
+- [ ] **GitOps adopted for application deployments and rollouts**
   - [ ] Infra code (Manifests, Configurations, etc.) is in a separate repository (and not in application repository)
-- [ ] GitOps adopted for GitOps agents themselves and not only for app related code
+- [ ] **GitOps adopted for GitOps agents themselves and not only for app related code and infra**
   - [ ] DON'T install ArgoCD with kubectl commands
   - [ ] Helm chart not recommended as it lags behind official releases of new ArgoCD releases
   - [ ] Consider:
@@ -148,23 +157,31 @@ So you should definitely doubt whatever you read here and more than welcome to a
   - [ ] Think about:
     - [ ] One ArgoCD to control multiple clusters (why not: single point of failure)
     - [ ] Argo CD per cluster (why not: a lot of maintenance and basically over complexity)
-- [ ] Sync Strategy
+- [ ] **Sync Strategy**
   - [ ] Auto Prune (resources deleted when files/content deleted)
   - [ ] Self-heal (cluster state corrected based on Git state and when manual changes done to the cluster)
 
 ### Monitoring
 
-TODO
+- [ ] Choose monitoring solution
+  - If you can afford it, go for ready monitoring solutions like DataDog, NewRelic, ...
+  - Be aware of maintenance and how much time you are willing to invest in maintaining monitoring solution
 
 ### Chaos Engineering
 
 The interesting topic of ensuring your environment can withstand unexpected disruptions
 
-TODO: insert a list of steps to go towards the process of establishing and integrating chaos engineering in your environment
+TODO: insert a list of steps to go towards the process of establishing and integrating chaos engineering in your environments
 
 ### IaC
 
-  - [ ] Follow DRY (Don't Repeat Yourself) principle as in make sure there are no code duplication so when you change parameter's value for example, you don't need to change it in two different place
+  - [ ] **Choose IaC technology**
+    - Things to consider:
+      - Maturity (new vs. well established and known)
+      - Community and support
+      - Number of integrations, plugins, providers, modules, ...
+  - **Usage**
+    - [ ] Follow DRY (Don't Repeat Yourself) principle as in make sure there are no code duplication so when you change parameter's value for example, you don't need to change it in two different place
 
 ### Terraform
 
@@ -182,3 +199,6 @@ TODO: insert a list of steps to go towards the process of establishing and integ
     - [ ] Stored in a shared location as it may be updated by different team members
     - [ ] Backed up (e.g. by having versioning)
     - [ ] Never edited directly/manually (as it should be managed and updated by Terraform itself as part of the Terraform lifecycle)
+  - **Terraform Projects Structure**
+    - [ ] Separate directory for each environment (staging, production, ...)
+    - [ ] Separate backend for each environment (as you don't want share the same authentication and access controls for all environments)
