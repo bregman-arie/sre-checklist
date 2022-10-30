@@ -1,28 +1,31 @@
-# SRE Checklist
+<p align="center">
+<img src="images/sre_checklist.png"/>
+</p>
 
-Purpose: Provide teams and individuals an idea on what to aspire for or what to take into consideration in the SRE field and work
+**Repository Purpose**: Provide teams and individuals an idea on what to aspire for or what to take into consideration in the SRE field and work
 
-Clarification: these checklists are **opinionated**. They are based on my own opinion and experience and are not universal truth (duh! :)).
-So you should definitely doubt whatever you read here and more than welcome to add your own opinion on the matter by starting a discussion or proposing a change to the project
+**Note**: these checklists are **opinionated**. They are based on my own opinion and experience and are not universal truth (duh! :)).
+So you should definitely doubt anything you read here and you are more than welcome to add your own opinion on the matter, by starting a discussion or proposing a change to the project
 
-- [SRE Checklist](#sre-checklist)
-  - [Team](#team)
-    - [SRE Team](#sre-team)
-      - [Responsibilities](#responsibilities)
-      - [Skills](#skills)
-      - [Processes](#processes)
-    - [SRE Team Goals](#sre-team-goals)
-    - [SRE Lead](#sre-lead)
-    - [New SRE Team Member](#new-sre-team-member)
-  - [Technologies](#technologies)
-    - [Git Repositories](#git-repositories)
-    - [Cloud](#cloud)
-    - [Kubernetes](#kubernetes)
-    - [GitOps - ArgoCD](#gitops---argocd)
-    - [Monitoring](#monitoring)
-    - [Chaos Engineering](#chaos-engineering)
-    - [IaC](#iac)
-    - [Terraform](#terraform)
+**2nd Note**: You may say this repository is still in progress. I wouldn't treat it as complete source at this point nor anything close to that
+
+- [Team](#team)
+  - [SRE Team](#sre-team)
+    - [Responsibilities](#responsibilities)
+    - [Skills](#skills)
+    - [Processes](#processes)
+  - [SRE Team Goals](#sre-team-goals)
+  - [SRE Lead](#sre-lead)
+  - [New SRE Team Member](#new-sre-team-member)
+- [Technologies](#technologies)
+  - [Git Repositories](#git-repositories)
+  - [Cloud](#cloud)
+  - [Kubernetes](#kubernetes)
+  - [GitOps - ArgoCD](#gitops---argocd)
+  - [Monitoring](#monitoring)
+  - [Chaos Engineering](#chaos-engineering)
+  - [IaC](#iac)
+  - [Terraform](#terraform)
 
 ## Team
 
@@ -185,9 +188,6 @@ TODO: insert a list of steps to go towards the process of establishing and integ
 
 ### Terraform
 
-  - **Terraform Code**
-    - [ ] Variables have description (to document what they are used for)
-    - [ ] Set lifecycle "prevent_destroy" on resources that should never be deleted (e.g. Terraform state source like S3 bucket)
   - **CI/CD**
     - [ ] CI to test Terraform changes (syntax, lint, ...)
       - Consider inserting cost considerations (e.g. test whether a change will raise the bill significantly if you are using a public cloud)
@@ -202,3 +202,37 @@ TODO: insert a list of steps to go towards the process of establishing and integ
   - **Terraform Projects Structure**
     - [ ] Separate directory for each environment (staging, production, ...)
     - [ ] Separate backend for each environment (as you don't want share the same authentication and access controls for all environments)
+    - [ ] Separate directory in each environment for each component
+
+      ```
+      staging/
+        networking/
+        applications/
+        databases/
+
+      production/
+        networking/
+        applications/
+          web-app-1/
+          web-app-2/
+        databases/
+          mongo/
+          mysql/
+
+      global/
+        user_access_management/
+      ```
+
+    - [ ] Terraform configuration files themselves can be organized in many ways
+      - Possible files:
+        - main.tf
+        - outputs.tf
+        - variables.tf
+        - providers.tf
+        - dependencies.tf
+      - Files can be further divided (avoid managing very long files)
+  - **Terraform Code**
+    - [ ] Variables have description (to document what they are used for)
+    - [ ] Set lifecycle "prevent_destroy" on resources that should never be deleted (e.g. Terraform state source like S3 bucket)
+    - [ ] Try not including shell scripts inline (some tend to grow quite a lot over time). Use instead templatefile function to render a script from a file
+    - [ ] Avoid duplication of Terraform code/configuration by using modules
