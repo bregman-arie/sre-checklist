@@ -2,22 +2,21 @@
 <img src="images/sre_checklist.png"/>
 </p>
 
-**Repository Purpose**: Provide teams and individuals an idea on what to aspire for or what to take into consideration in the SRE field and work
+**Repository Purpose**: Provide teams and individuals an idea on what to aspire for or what to take into consideration in the SRE field and work :dart:
 
-**Note**: these checklists are **opinionated**. They are based on my own opinion and experience and are not universal truth (duh! :)).
+**Note**: these checklists are **opinionated**. They are based on my own opinion and experience and are not universal truth (duh! :smile:).
 So you should definitely doubt anything you read here and you are more than welcome to add your own opinion on the matter, by starting a discussion or proposing a change to the project
 
-**2nd Note**: You may say this repository is still in progress. I wouldn't treat it as complete source at this point nor anything close to that
+**2nd Note**: You may say this repository is still in progress. I wouldn't treat it as complete source at this point nor anything close to that :construction:
 
-- [Team](#team)
-  - [SRE Team](#sre-team)
-    - [Responsibilities](#responsibilities)
-    - [Skills](#skills)
-    - [Processes](#processes)
+- [Team :couple:](#team-couple)
+  - [Responsibilities](#responsibilities)
+  - [Skills](#skills)
+  - [Processes](#processes)
   - [SRE Team Goals](#sre-team-goals)
   - [SRE Lead](#sre-lead)
   - [New SRE Team Member](#new-sre-team-member)
-- [Technologies](#technologies)
+- [Technologies :computer:](#technologies-computer)
   - [Git Repositories](#git-repositories)
   - [Cloud](#cloud)
   - [Kubernetes](#kubernetes)
@@ -27,11 +26,9 @@ So you should definitely doubt anything you read here and you are more than welc
   - [IaC](#iac)
   - [Terraform](#terraform)
 
-## Team
+## Team :couple:
 
-### SRE Team
-
-#### Responsibilities
+### Responsibilities
 
 - [ ] **Decide on responsibilities**
   - Common
@@ -44,7 +41,7 @@ So you should definitely doubt anything you read here and you are more than welc
 - [ ] **Documented/Written**
   - Make sure to write down the responsibilities of the team somewhere. That will be useful for many things like new members joining, recruiting, clarity for the organization and more.
 
-#### Skills
+### Skills
 
 - [ ] **Must**
     - [ ] Coding
@@ -60,7 +57,7 @@ So you should definitely doubt anything you read here and you are more than welc
     - [ ] Cloud
     - [ ] Virtualization
 
-#### Processes
+### Processes
 
 - [ ] Incident Management
   - There must be a well defined process to how incidents are managed. Some thoughts:
@@ -113,38 +110,49 @@ So you should definitely doubt anything you read here and you are more than welc
 - [ ] Time to deep dive into operations
   - TODO: add some items :)
 
-## Technologies
+## Technologies :computer:
 
 ### Git Repositories
 
-- [ ] Is there CI for every project?
-  - [ ] Linting and Styling
-  - [ ] Unit tests
-  - [ ] E2E testing
-- [ ] Least Privilege and Zero Trust
-  - [ ] Make sure only people from team/company have access to the repositories
+- [ ] **CI**
+  - [ ] Is there CI for every project?
+    - [ ] Linting and Styling
+    - [ ] Unit tests
+    - [ ] E2E testing
+- [ ] **Security**
+  - [ ] Least Privilege and Zero Trust
+    - [ ] Make sure only people from team/company have access to the repositories
+- [ ] **Automation**
+  - [ ] This is quite advanced but still, you may want to consider automating repositories creation and access control (using technologies like Terraform or programming languages, you can automate fully the process of repositories management)
 
 ### Cloud
 
-- [ ] Resources managed through IaC technologies such as Terrform, Pulumti, etc.
-- [ ] Resources are tagged, labeled
-  - [ ] Env (staging, prod, dev)
-- [ ] Resources Quotas are set (no one wants to hit high bills)
-- [ ] No single point of failure
-  - [ ] Resources deployed across availability zones, regions, etc.
-- [ ] Environment for Dev/Staging and a separate one for production
+- [ ] **Provisioning**
+  - [ ] Resources managed through IaC technologies such as Terrform, Pulumti, etc.
+- [ ] **Tracking and Monitoring**
+  - [ ] Resources are tagged, labeled
+    - [ ] Env (staging, prod, dev)
+- [ ] **Management**
+  - [ ] Resources Quotas are set (no one wants to hit high bills)
+  - [ ] Environment for Dev/Staging and a separate one for production
+- [ ] **Reliability**
+  - [ ] No single point of failure
+    - [ ] Resources deployed across availability zones, regions, etc.
 
 ### Kubernetes
 
-- [ ] Apply/Add labels for every type of resources. You may use this [page](https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels) as a suggestion to which labels you should be adding
-- [ ] CI/CD for Cluster bootstraping 
-- [ ] CD process for manifests/configurations (using something like Flux, ArgoCD)
-  - [ ] Make sure cluster bootstraping (the process of preparing the cluster) is managed fully using GitOps
-- [ ] Cluster for each environment? Dev, QA, Staging, Production
-  - [ ] Per region? Per cloud? How distributed your environment should be? 
-- [ ] Cluster Policy Management
-  - [ ] Networking Policies
-  - [ ] Storage Policies
+- [ ] **Resource Management**
+  - [ ] Apply/Add labels for every type of resources. You may use this [page](https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels) as a suggestion to which labels you should be adding
+- [ ] **CI/CD**
+  - [ ] CI/CD for Cluster bootstraping
+  - [ ] CD process for manifests/configurations (using something like Flux, ArgoCD)
+    - [ ] Make sure cluster bootstraping (the process of preparing the cluster) is managed fully using GitOps
+- [ ] **Cluster Management**
+  - [ ] Cluster for each environment? Dev, QA, Staging, Production
+    - [ ] Per region? Per cloud? How distributed your environment should be?
+  - [ ] Cluster Policy Management
+    - [ ] Networking Policies
+    - [ ] Storage Policies
 
 ### GitOps - ArgoCD
 
@@ -188,10 +196,11 @@ TODO: insert a list of steps to go towards the process of establishing and integ
 
 ### Terraform
 
-  - **CI/CD**
-    - [ ] CI to test Terraform changes (syntax, lint, ...)
+  - **Development and CI/CD**
+    - [ ] CI pipeline to test Terraform changes (syntax, lint, ...)
       - Consider inserting cost considerations (e.g. test whether a change will raise the bill significantly if you are using a public cloud)
-    - [ ] CD to deploy apply Terraform changes
+    - [ ] CD pipeline to deploy/apply Terraform changes after the change is merged
+    - To apply changes as part of a pull request (without merging a change) you can use something like [Atlantis](https://www.runatlantis.io)
   - **State**
     - [ ] Stored in a private secured location
       - [ ] Encrypted
@@ -221,6 +230,10 @@ TODO: insert a list of steps to go towards the process of establishing and integ
 
       global/
         user_access_management/
+
+      modules/
+        applications/
+          web-app-1/...
       ```
 
     - [ ] Terraform configuration files themselves can be organized in many ways
@@ -235,4 +248,9 @@ TODO: insert a list of steps to go towards the process of establishing and integ
     - [ ] Variables have description (to document what they are used for)
     - [ ] Set lifecycle "prevent_destroy" on resources that should never be deleted (e.g. Terraform state source like S3 bucket)
     - [ ] Try not including shell scripts inline (some tend to grow quite a lot over time). Use instead templatefile function to render a script from a file
-    - [ ] Avoid duplication of Terraform code/configuration by using modules
+    - [ ] No hardcoded repeated values (common examples are ports, CIDR blocks, etc.). Instead use the concept of `locals`
+    - **Modules**
+      - [ ] Avoid duplication of Terraform code/configuration by using modules
+      - [ ] Tend to make modules reusable by for example not including provider code in reusable module
+      - [ ] Avoid hardcoding values, especially in the case reusable modules. To make them reusable, values will have to come from input variables
+      - [ ] Don't use relative paths! use `path references` (e.g. `path.module`, `path.root`)
