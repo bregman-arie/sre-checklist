@@ -2,12 +2,12 @@
 <img src="images/sre_checklist.png"/>
 </p>
 
-:dart: **Repository Purpose**: Provide teams and individuals an idea on what to aspire for or what to take into consideration in the SRE field and work
+:dart: **Repository Purpose**: Provide teams and individuals an idea on what to take into consideration and what to aspire for in the SRE field and work
 
 **Note**: these checklists are **opinionated**. They are based on my own opinion and experience and are not universal truth (duh! :smile:).
 So you should definitely doubt anything you read here and you are more than welcome to add your own opinion on the matter, by starting a discussion or proposing a change to the project
 
-:construction: You may say this repository is still in progress. I wouldn't treat it as complete source at this point or anything close to that
+:construction: You may say this repository is still in progress. I wouldn't treat it as complete source at this point or anything close to that. Contributions are more than welcome!
 
 - [Team :couple:](#team-couple)
   - [Responsibilities](#responsibilities)
@@ -48,6 +48,8 @@ So you should definitely doubt anything you read here and you are more than welc
     - [Terraform Code](#terraform-code)
       - [Modules](#modules)
     - [Git](#git)
+    - [Cloud](#cloud-1)
+    - [Secrets](#secrets)
 
 ## Team :couple:
 
@@ -80,7 +82,7 @@ So you should definitely doubt anything you read here and you are more than welc
 
 #### Optional
 
-These very much depends on your environment, technology stack, etc.
+Some will argue that the following skills and topics shouldn't be optional and are 100% must, but in my personal view they very much depend on your responsibilities as SRE and your work environment. If your environment consists mostly of bare metal (physical) servers for example and there are no containers, then why containers is a must for you?
 
 - [ ] Containers
 - [ ] Kubernetes
@@ -165,16 +167,18 @@ These very much depends on your environment, technology stack, etc.
 #### Provisioning
 
 - [ ] Resources managed through IaC technologies such as Terrform, Pulumti, etc.
+  - If at any point you need restore you entire infrastructure you have the code to do so and can perform it quite quickly
 
 #### Tracking and Monitoring
 
   - [ ] Resources are tagged, labeled
-    - [ ] Env (staging, prod, dev)
+    - [ ] Env (e.g. staging, prod, dev)
+    - [ ] Owner (e.g. team)
 
 #### Management
 
 - [ ] Resources Quotas are set (no one wants to hit high bills)
-- [ ] Environment for Dev/Staging and a separate one for production
+- [ ] Separate **accounts** for Dev/Staging and production
 
 #### Reliability
 
@@ -260,6 +264,7 @@ TODO: insert a list of steps to go towards the process of establishing and integ
   - [ ] CD pipeline to deploy/apply Terraform changes after the change is merged
   - To apply changes as part of a pull request (without merging a change) you can use something like [Atlantis](https://www.runatlantis.io)
     - This way you can avoid using local configurations and credentials
+  - Needless to say, but once you started to use Terraform in your org, you should use only that and not allow users to make changes manually in the providers you are using (that will lead to errors when running `terraform apply`)
 
 #### State
 
@@ -309,8 +314,6 @@ TODO: insert a list of steps to go towards the process of establishing and integ
     - dependencies.tf
   - Files can be further divided (avoid managing very long files)
 
-
-
 #### Terraform Code
 
 - [ ] Variables have description (to document what they are used for)
@@ -328,7 +331,8 @@ TODO: insert a list of steps to go towards the process of establishing and integ
 ##### Modules
 
 - [ ] Avoid duplication of Terraform code/configuration by using modules
-- [ ] Tend to make modules reusable by for example not including provider code in reusable module
+- [ ] Try to make modules reusable as much as possible
+  - [ ] Don't include provider code in reusable module. Different teams and organizations can use different provider versions and constraints (e.g. different default tags)
 - [ ] Avoid hardcoding values, especially in the case reusable modules. To make them reusable, values will have to come from input variables
 - [ ] Consider using only separate resources in a module and not inline blocks as they may limit you at some point or another when reusing the module
 - [ ] Don't use relative paths! use `path references` (e.g. `path.module`, `path.root`)
@@ -337,8 +341,64 @@ TODO: insert a list of steps to go towards the process of establishing and integ
 
 #### Git
 
-- Recommended repositories:
-  - [ ] Repository for modules
-  - [ ] Repository for environments (this repository makes use of the modles repository mentioned above)
-- [ ] Consider using tags
-  - [ ] They can be used for specifying specific version of modules 
+- Recommended repositories layout:
+  - [ ] Separate Repository for modules
+  - [ ] Separate Repository for environments (this repository makes use of the modules repository mentioned above)
+- [ ] Consider using Git tags
+  - [ ] They can be used for specifying specific versions of modules
+
+#### Cloud
+
+- [ ] Don't hardcode image IDs (it's hard to maintain long term). Instead use filters
+
+```
+
+data "cloud_image" "image_data" {
+  provider = ...
+  filter {
+    name = "name"
+    values = ["some-image-you-would-like-to-use"]
+}
+
+resource "some_instance" "instance" {
+  image = data.cloud_image.image_data.id
+}
+```
+
+#### Secrets
+
+- [ ] **Basics!**
+  - [ ] DON'T store credentials in Terraform configuration as it's highly insecure
+  - [ ] Eventually sensitive data will end up in your state file, for this reason make sure it's encrypted and only visible to those who should be able to access it
+    - [ ] Same applies for plan files
+- [ ] **Provider Credentials**
+  - [ ] For local Terraform work/development, you can use generic secret-management tools/CLIs like 1Password or provider-specific options like aws-vault
+  - [ ] For CI/CD that's highly depends on the CI/CD solution/service you are using:
+     - GitHub Actions: Use Open ID Connect (OIDC) to establish connection with your provider. You then can specify in your GitHub Actions workflow the following:
+
+  ```
+  - uses: aws-actions/configure-aws-credentials@v1
+    with:
+      role-to-assume: arn:aws:iam::someIamRole
+      aws-region: ...
+  ```
+
+
+    - Jenkins: If Jenkins runs on the provider, you can use the provider access entities (like roles, policies, ...) to grant the instance, on which Jenkins is running, access control
+    - CircleCI: you can use `CircleCI Context` and then specify it in your CircleCI config file
+
+  ```
+  context:
+    - some-context
+  ```
+- [ ] Secrets in Terraform Configuration
+  - [ ] Consider how you would like to manage secrets inside Terraform configuration files
+    - **Environment Variables** - you define Terraform variables (with `sensitive = true`) and pass values with environment variables
+      - pros: simple to use, no need to store sensitive data inside Terraform code
+      - cons: managed outside of Terraform so tracking, enforcing, managing for different environments, ... is challenging or not feasible
+    - **Encrypted Files** - encrypting the secret and storing the encrypted secrets in Terraform configurations
+      - pros: secrets are encrypted and are of Terraform code and part of the version control system
+      - cons: working this way can be cumbersome (to modify, you first have to decrypt, makes the changes and then encrypt it again). Still holds security risk if someone gets their hands on the decryption key
+    - **Secret Store** - centralized secret store
+      - pros: no plain text secrets in Terraform configurations. Easy to standardize practices and policies around secrets if they are all in the same place
+      - cons: not managed as part of the repository, version control, ... makes it easier to makes mistakes in regards to different environments. Costs $$$
