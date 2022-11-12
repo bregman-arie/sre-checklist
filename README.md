@@ -18,15 +18,23 @@ So you should definitely doubt anything you read here and you are more than welc
   - [SRE Team Goals](#sre-team-goals)
   - [SRE Lead](#sre-lead)
   - [New SRE Team Member](#new-sre-team-member)
+- [Production](#production)
+  - [Requirements](#requirements)
+  - [Provisioning](#provisioning)
+  - [Installation](#installation)
+  - [Deployment](#deployment)
+  - [Configuration](#configuration)
+  - [Resiliency](#resiliency)
 - [Technologies :computer:](#technologies-computer)
   - [Git Repositories](#git-repositories)
     - [CI](#ci)
     - [Security](#security)
     - [Automation](#automation)
   - [Cloud](#cloud)
-    - [Provisioning](#provisioning)
+    - [Provisioning](#provisioning-1)
     - [Tracking and Monitoring](#tracking-and-monitoring)
-    - [Management](#management)
+    - [Accounts](#accounts)
+    - [Resources](#resources)
     - [Reliability](#reliability)
   - [Kubernetes](#kubernetes)
     - [Resource Management](#resource-management)
@@ -131,16 +139,43 @@ Some will argue that the following skills and topics shouldn't be optional and a
 
 ### New SRE Team Member
 
-- Welcome :)
-- Have a mentor? Great. If not, ask for one
-- [ ] Do the onboarding
-    -  No onboarding? maybe you can be the first to add one
-- [ ] Learn about the product
-  - What it does?
-  - Is it SaaS? On-Premise? ...
-  - How it's delivered and deployed?
-- [ ] Time to deep dive into operations
-  - TODO: add some items :)
+* Welcome :)
+* Have a mentor? Great. If not, ask for one
+* [ ] Do the onboarding
+  * [ ] No onboarding? maybe you can be the first to add one
+* [ ] Learn about the product
+  * What it does?
+  * Is it SaaS? On-Premise? ...
+  * How it's delivered and deployed?
+* [ ] Time to deep dive into operations
+  * TODO: add some items :)
+
+## Production
+
+### Requirements
+
+- [ ] What are the requirements for going to production?
+
+### Provisioning
+
+- [ ] How do you provision the infrastructure required for deploying the application? (Terraform, Pulumi, CloudFormation, ...)
+
+### Installation
+
+- [ ] How to install the application and its dependencies? (Container, Bash Script, Ansible, ...)
+
+### Deployment
+
+- [ ] How to deploy the application or the application service? (k8s, cloud instances)
+
+### Configuration
+
+- [ ] How to configure the application? (k8s, Ansible, ...)
+
+### Resiliency
+
+- [ ] Your app is able to withstand outages (usually by implement multi-region or multi-cloud architectures)
+- [ ] Your app will scale up and down in response to load change
 
 ## Technologies :computer:
 
@@ -148,10 +183,10 @@ Some will argue that the following skills and topics shouldn't be optional and a
 
 #### CI
 
-  - [ ] Is there CI for every project?
-    - [ ] Linting and Styling
-    - [ ] Unit tests
-    - [ ] E2E testing
+- [ ] Is there CI for every project?
+  - [ ] Linting and Styling
+  - [ ] Unit tests
+  - [ ] E2E testing
 
 #### Security
 
@@ -175,10 +210,14 @@ Some will argue that the following skills and topics shouldn't be optional and a
     - [ ] Env (e.g. staging, prod, dev)
     - [ ] Owner (e.g. team)
 
-#### Management
+#### Accounts
+
+- [ ] Separate **accounts** for dev, staging, production, ...
+  - Why? better isolation, granular and accurate authentication and authorization, reporting per env, ...
+
+#### Resources
 
 - [ ] Resources Quotas are set (no one wants to hit high bills)
-- [ ] Separate **accounts** for Dev/Staging and production
 
 #### Reliability
 
@@ -332,7 +371,7 @@ TODO: insert a list of steps to go towards the process of establishing and integ
 
 - [ ] Avoid duplication of Terraform code/configuration by using modules
 - [ ] Try to make modules reusable as much as possible
-  - [ ] Don't include provider code in reusable module. Different teams and organizations can use different provider versions and constraints (e.g. different default tags)
+  - [ ] Don't include provider code in a reusable module. Different teams and organizations can use different provider versions and constraints (e.g. different default tags)
 - [ ] Avoid hardcoding values, especially in the case reusable modules. To make them reusable, values will have to come from input variables
 - [ ] Consider using only separate resources in a module and not inline blocks as they may limit you at some point or another when reusing the module
 - [ ] Don't use relative paths! use `path references` (e.g. `path.module`, `path.root`)
