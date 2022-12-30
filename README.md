@@ -229,6 +229,8 @@ Some will argue that the following skills and topics shouldn't be optional and a
 #### Resource Management
 
 - [ ] Apply/Add labels for every type of resources. You may use this [page](https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels) as a suggestion to which labels you should be adding
+- [ ] Every workload has requests defined for CPU and memory (this ensures the workload gets the resources it requires and it's scheduled on the right node)
+- [ ] Every workload has limits defined for memory (but NOT CPU)
 
 #### CI/CD
   - [ ] CI/CD for Cluster bootstraping
@@ -242,6 +244,15 @@ Some will argue that the following skills and topics shouldn't be optional and a
 - [ ] Cluster Policy Management
   - [ ] Networking Policies
   - [ ] Storage Policies
+
+#### Scaling
+- [ ] Choose between manually managing scaling or completely managed scaling
+- [ ] For different reasons, you might want to consider setting minimum node and max nodes for your node pool
+
+#### Chaos Engineering 
+- [ ] Choose Chaos Engineering framework that is compatible with Kubernetes
+  - [ ] [Chaos-Mesh](https://chaos-mesh.org)
+  - [ ] [Litmus Experiments](https://litmuschaos.github.io/litmus)
 
 ### GitOps - ArgoCD
 
