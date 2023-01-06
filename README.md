@@ -9,6 +9,27 @@ So you should definitely doubt anything you read here and you are more than welc
 
 :construction: You may say this repository is still in progress. I wouldn't treat it as complete source at this point or anything close to that. Contributions are more than welcome!
 
+
+<!-- ALL-TOPICS-LIST:START -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<center>
+<table>
+  <tr>
+    <td align="center"><a href="#team"><img src="images/logos/team.png" width="75px;" height="75px;" alt="Team" /><br /><b>Team</b><br><a href="#responsibilities">- Responsibilities</a></a></td>
+    <td align="center"><a href="#team"><img src="images/logos/production.png" width="75px;" height="75px;" alt="Team" /><br /><b>Production</b><br><a href="#requirements">- Requirements</a><br><a href="#provisioning">- Provisioning</a></a></td>
+  </tr>
+
+  <tr>
+    <td align="center"><a href="#kubernetes"><img src="images/logos/kubernetes.png" width="75px;" height="75px;" alt="Kubernetes" /><br /><b>Kubernetes</b><br><a href="#scaling">- Scaling</a></a></td>
+  </tr>
+
+</table>
+</center>
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
+<!-- ALL-TOPICS-LIST:END -->
+
 - [Team :couple:](#team-couple)
   - [Responsibilities](#responsibilities)
   - [Skills](#skills)
@@ -59,7 +80,7 @@ So you should definitely doubt anything you read here and you are more than welc
     - [Cloud](#cloud-1)
     - [Secrets](#secrets)
 
-## Team :couple:
+## Team
 
 ### Responsibilities
 
@@ -218,6 +239,9 @@ Some will argue that the following skills and topics shouldn't be optional and a
 #### Resources
 
 - [ ] Resources Quotas are set (no one wants to hit high bills)
+- [ ] Important resources are protected from being removed - whether directly, using internal cleanup tooling or any other method
+  - [ ] One option: Prevent allowing to delete a resource if there is no label called 'can_be_deleted' on it
+  - [ ] Another option: Enforce users to write the resource name when removing it (this is something that is already implemented by some cloud providers, but you can implement in your tooling as well)
 
 #### Reliability
 
@@ -246,8 +270,12 @@ Some will argue that the following skills and topics shouldn't be optional and a
   - [ ] Storage Policies
 
 #### Scaling
-- [ ] Choose between manually managing scaling or completely managed scaling
-- [ ] For different reasons, you might want to consider setting minimum node and max nodes for your node pool
+- Cluster Scaling
+  - [ ] Choose between manually managing scaling or completely managed scaling
+  - [ ] For different reasons, you might want to consider setting minimum node and max nodes for your node pool
+- Application Scaling
+  - [ ] VPA (Vertical Pod Autoscaler)
+  - [ ] HPA (Horizontal)
 
 #### Chaos Engineering 
 - [ ] Choose Chaos Engineering framework that is compatible with Kubernetes
@@ -451,4 +479,8 @@ resource "some_instance" "instance" {
       - cons: working this way can be cumbersome (to modify, you first have to decrypt, makes the changes and then encrypt it again). Still holds security risk if someone gets their hands on the decryption key
     - **Secret Store** - centralized secret store
       - pros: no plain text secrets in Terraform configurations. Easy to standardize practices and policies around secrets if they are all in the same place
-      - cons: not managed as part of the repository, version control, ... makes it easier to makes mistakes in regards to different environments. Costs $$$
+      - cons: not managed as part of the repository, version control, ... makes it easier to makes mistakes in regards to different environments. Costs
+
+## Credits
+
+Logos credits can be found [here](credits.md)
