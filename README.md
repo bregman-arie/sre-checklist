@@ -16,11 +16,13 @@ So you should definitely doubt anything you read here and you are more than welc
 <center>
 <table>
   <tr>
-    <td align="center"><a href="#team"><img src="images/logos/team.png" width="75px;" height="75px;" alt="Team" /><br /><b>Team</b><br><a href="#responsibilities">- Responsibilities</a></a></td>
+    <td align="center"><a href="#team"><img src="images/logos/team.png" width="75px;" height="75px;" alt="Team" /><br /><b>Team</b><br><a href="#responsibilities">- Responsibilities</a><br><a href="#skills">- Skills</a></a></td>
     <td align="center"><a href="#team"><img src="images/logos/production.png" width="75px;" height="75px;" alt="Team" /><br /><b>Production</b><br><a href="#requirements">- Requirements</a><br><a href="#provisioning">- Provisioning</a></a></td>
   </tr>
 
   <tr>
+    <td align="center"><a href="#git"><img src="images/logos/git.png" width="75px;" height="75px;" alt="Kubernetes" /><br /><b>Git</b><br><a href="#ci">- CI</a></a></td>
+    <td align="center"><a href="#kubernetes"><img src="images/logos/cloud.png" width="75px;" height="75px;" alt="Kubernetes" /><br /><b>Cloud</b><br><a href="#scaling">- Provisioning</a></a></td>
     <td align="center"><a href="#kubernetes"><img src="images/logos/kubernetes.png" width="75px;" height="75px;" alt="Kubernetes" /><br /><b>Kubernetes</b><br><a href="#scaling">- Scaling</a></a></td>
   </tr>
 
@@ -273,7 +275,7 @@ Some will argue that the following skills and topics shouldn't be optional and a
 - Cluster Scaling
   - [ ] Choose between manually managing scaling or completely managed scaling
   - [ ] For different reasons, you might want to consider setting minimum node and max nodes for your node pool
-- Application Scaling
+- Application/Pod Scaling
   - [ ] VPA (Vertical Pod Autoscaler)
   - [ ] HPA (Horizontal)
 
@@ -310,8 +312,13 @@ Some will argue that the following skills and topics shouldn't be optional and a
 ### Monitoring
 
 - [ ] Choose monitoring solution
-  - If you can afford it, go for ready monitoring solutions like DataDog, NewRelic, ...
-  - Be aware of maintenance and how much time you are willing to invest in maintaining monitoring solution
+  - If you can afford it, consider going for ready monitoring solutions like DataDog, NewRelic, ...
+  - Be aware of maintenance and how much time you are willing to invest in developing and maintaining monitoring solution
+- [ ] Alerts/Monitors
+  - [ ] Critical alerts defined
+  - [ ] Team gets notifications on critical alerts (Slack, Phone, Email, ... perhaps all.  whatever works best for the team)
+- [ ] Incident Management
+- [ ] Dashboards
 
 ### Chaos Engineering
 
