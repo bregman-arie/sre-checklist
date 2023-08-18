@@ -149,7 +149,7 @@ Some will argue that the following skills and topics shouldn't be optional and a
 - [ ] Identify SRE team maturity and work on improving it
   - [ ] Step 1: Operations: SRE is focused on resolving issues, dealing with requests
     - At this step you'll be mainly focused on making sure you and the team are able to respond to any issue raised
-    - Slowly you'll automated processes, fixes and move towards step 2
+    - Slowly you'll automate processes, fixes and move towards step 2
   - [ ] Step 2: Automation: SRE is moving towards automation and self-service. Providing tooling, documentation, etc.
     - In this step you focus on building the mindset of automating fixes, documenting what the team and others parties in the organization should be aware of
     - This step is probably the most long one. Don't expect to achieve it in short time, just make sure you have consistent progress towards next step
