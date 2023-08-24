@@ -224,7 +224,7 @@ Some will argue that the following skills and topics shouldn't be optional and a
 
 #### Provisioning
 
-- [ ] Resources managed through IaC technologies such as Terrform, Pulumi, etc.
+- [ ] Resources managed through IaC technologies such as Terraform, Pulumi, etc.
   - If at any point you need restore you entire infrastructure you have the code to do so and can perform it quite quickly
 
 #### Tracking and Monitoring
