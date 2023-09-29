@@ -143,7 +143,7 @@ Some will argue that the following skills and topics shouldn't be optional and a
 
 - [ ] Is there an onboarding page for SREs joining the team?
 - [ ] Schedule 1:1 meeting with team (probably...manager or lead? TBD)
-- [ ] Identify Possible Gaps. Few things to watch our for:
+- [ ] Identify Possible Gaps. Few things to watch out for:
   - Does development team waits on SRE for infra related operations?
   - Basically going over other check lists in this page :)
 - [ ] Identify SRE team maturity and work on improving it
